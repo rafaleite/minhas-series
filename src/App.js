@@ -1,51 +1,25 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
+import Menu from './Menu'
+import Home from './Home'
+
+const About = () => <section className="intro-section"> <h2>Sobre ...</h2> </section>
 
 class App extends Component {
-
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      count: 0
-    }
-  }
-
-  componentDidMount() {
-    setInterval( ()=> this.setState({ count: this.state.count+1 }), 1000)
-  }
 
   render() {
     return (
       <div>
-        <nav className="navbar navbar-default navbar-fixed-top" role="navigation">
-          <div className="container">
-            <div className="navbar-header page-scroll">
-              <a className="navbar-brand page-scroll" href="#page-top">
-                <img src="images/logo.png" height="30" />
-              </a>
-            </div>
-
-            <div className="collapse navbar-collapse navbar-ex1-collapse">
-              <ul className="nav navbar-nav">
-                <li>
-                  <a href="">Menu item {this.state.count}</a>
-                </li>
-              </ul>
-            </div>
-
+        
+        <Router>
+          
+          <div>
+            <Menu />
+            <Route exact path='/' component={Home} />
+            <Route exact path='/about' component={About} />
           </div>
-        </nav>
-
-        <section id="intro" className="intro-section">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12">
-                <h1><img src="images/logo.png" /></h1>
-                <p>Nunca mais esqueça uma série que você assistiu ou que alguém lhe indicou.</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        </Router>
       </div>
     )
   }
